@@ -123,31 +123,38 @@ This file is a flat, actionable checkbox list covering the whole build: reposito
 
 ## Deployment
 
-- [ ] `vite.config.ts` `base` matches the repository name exactly, including the trailing slash
-- [ ] `public/.nojekyll` present in `dist` after build
-- [ ] Workflow runs `typecheck` and `test` before `build`
-- [ ] Workflow has `permissions: contents read, pages write, id-token write`
-- [ ] `concurrency: { group: pages, cancel-in-progress: true }` set
-- [ ] A push to the default branch deploys automatically
-- [ ] Fonts load from the site's own origin, not from a third party
-- [ ] Direct load of a deep link works after a hard refresh
-- [ ] Assets load correctly under the `/<repo>/` path, verified on the live URL not just locally
+- [x] `vite.config.ts` `base` matches the repository name exactly, including the trailing slash
+- [x] `public/.nojekyll` present in `dist` after build
+- [x] Workflow runs `typecheck` and `test` before `build`
+- [x] Workflow has `permissions: contents read, pages write, id-token write`
+- [x] `concurrency: { group: pages, cancel-in-progress: true }` set
+- [x] A push to the default branch deploys automatically
+- [x] Fonts load from the site's own origin, not from a third party
+- [x] Direct load of a deep link works after a hard refresh (hash routing: the fragment never reaches the server, so Pages always serves `index.html`)
+- [x] Assets load correctly under the `/<repo>/` path, verified on the live URL not just locally (JS, CSS and the font all return 200)
 
 ## Pre-launch QA
 
-- [ ] Complete a full run in each of the three modes on a real phone
-- [ ] Answer all 1s: result is Rising 1.2 with the Rising salary band
-- [ ] Answer all 4s: result is Valiant 4.2 with the ceiling notice and the Valiant salary band
-- [ ] Force a split: answer self-assessment high and scenarios low, confirm both cards and the `delta > 0` text
-- [ ] Force the reverse split and confirm the `delta < 0` text
-- [ ] Scenario-only run names exactly five unmeasured competencies
-- [ ] Open the browser network tab and complete a full run: zero requests after the initial page and asset load
-- [ ] `localStorage` is empty after a run with persistence off
+- [ ] Complete a full run in each of the three modes on a real phone (all three modes were run end to end in a headless browser at phone width; a real handset is still worth doing)
+- [x] Answer all 1s: result is Rising 1.2 with the Rising salary band
+- [x] Answer all 4s: result is Valiant 4.2 with the ceiling notice and the Valiant salary band
+- [x] Force a split: answer self-assessment high and scenarios low, confirm both cards and the `delta > 0` text
+- [ ] Force the reverse split and confirm the `delta < 0` text (covered by unit tests, not yet exercised through the UI)
+- [x] Scenario-only run names exactly five unmeasured competencies
+- [x] Open the browser network tab and complete a full run: zero requests after the initial page and asset load (driver listened for `requestfailed` and all network activity; nothing after the initial load)
+- [x] `localStorage` is empty after a run with persistence off
 - [ ] With persistence on, a refresh restores the run; the clear control empties it
-- [ ] No `[TBD:` string anywhere in `src/` or in the built `dist/`
-- [ ] No em dash appears in any Persian or English user-facing string
-- [ ] Every salary figure on screen traces to `career_ladder_matrix.md`
-- [ ] README explains provenance: whose matrix, whose ladder, and that the salary figures are the source's, not the author's estimate
-- [ ] LICENSE file present
-- [ ] Methodology link from the result screen resolves to this documentation set
+- [x] No `[TBD:` string anywhere in `src/` or in the built `dist/`
+- [x] No em dash appears in any Persian or English user-facing string
+- [x] Every salary figure on screen traces to `career_ladder_matrix.md`
+- [x] README explains provenance: whose matrix, whose ladder, and that the salary figures are the source's, not the author's estimate (the source company is unnamed, under NDA)
+- [x] LICENSE file present
+- [x] Methodology link from the result screen resolves to this documentation set
 - [ ] Read every one of the 40 questions aloud in Persian and fix anything that reads like a translation
+
+## Confidentiality
+
+- [x] The source company is not named anywhere in `src/`, `docs/`, the README, `.gitignore` or the deployed bundle
+- [x] The source workbook and the book PDF are gitignored by generic pattern, not by a filename that names the company
+- [x] Git history rewritten so no reachable commit contains the name
+- [ ] Old pre-rewrite commits purged from GitHub (still reachable by direct SHA until the repository is recreated)
